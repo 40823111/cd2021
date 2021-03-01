@@ -96,7 +96,7 @@ Title: 2020 Fall CP 課程
 Date: 2020-08-13 11:00
 Category: Misc
 Tags: 2020FallCP
-Slug: 2021-Fall-Intro-to-computer-programming
+Slug: 2021-Fall-Intro-to-computer-programming-1
 Author: yen
 ---
 
