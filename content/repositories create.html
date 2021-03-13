@@ -122,7 +122,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='Introduction.html'>Introduction</a><li class='has-children'><a href='leo.html'>leo</a><ul class='dropdown'><li><a href='edit blog.html'>edit blog</a><li><a href='edit Reveal.html'>edit Reveal</a></li></ul><li><a href='repositories create.html'>repositories create</a><li class='has-children'><a href='week.html'>week</a><ul class='dropdown'><li><a href='week1.html'>week1</a><li><a href='week2.html'>week2</a></li>
+                     <li><a href='Introduction.html'>Introduction</a><li class='has-children'><a href='leo.html'>leo</a><ul class='dropdown'><li><a href='edit blog.html'>edit blog</a><li><a href='edit Reveal.html'>edit Reveal</a></li></ul><li><a href='repositories create.html'>repositories create</a><li class='has-children'><a href='week.html'>week</a><ul class='dropdown'><li><a href='week1.html'>week1</a><li><a href='week2.html'>week2</a><li><a href='week3.html'>week3</a></li>
                       </ul>
                 </nav>
               </div>
@@ -160,17 +160,15 @@ img.add_border {
 <li><span>cms.bat</span><span> </span>- 讓使用者執行動態網站用的批次檔案.</li>
 <li><span>acp.bat</span><span> </span>- 若使用者已經將倉儲設為 ssh 連線, 且提供遠端與近端的認證模式, 則可以在執行此批次指令之後加上提交字串, 即可執行 git add ., git commit -m "提交訊息", 以及 git push 等三個指令.</li>
 </ol>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
+<p><img alt="" height="477" src="./../images/螢幕擷取畫面 2021-03-11 152457.png" width="560"/></p>
 <p></p>
 <p>(7) 完成後 就可以git push</p>
+<p>acp.bat 內容</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">echo off
+set message=%1
+git add .
+git commit -m %message%
+git push</pre>
 <p><img alt="" height="288" src="./../images/螢幕擷取畫面 2.png" width="554"/></p>
 <p><span></span></p>
 <p></p>
