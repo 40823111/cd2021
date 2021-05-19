@@ -210,7 +210,60 @@ git push</pre>
 <p><span><img alt="" height="408" src="/images/1621441935131.jpg" width="564"/></span></p>
 <p><span></span></p>
 <p><span></span>step3</p>
-<p>把程式複製放在主體的上面</p><h2>week11</h2>
+<p><span>把程式複製放在主體的上面(如果沒有可以自己新增)</span></p>
+<p><img alt="" height="418" src="/images/1621442379740.jpg" width="288"/></p>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">threadFunction=function()
+	-- Put your thread code here (initialization and clean-up code should not be in here)
+
+	
+	-- Some EXTERNAL commands (e.g. socket commands provided by Lua libraries)
+	-- might appear as blocking to the simulator. In that case, you can define
+	-- a non-blocking section as following example shows:
+	--
+	-- sim.setThreadIsFree(true) -- Start of the non-blocking section
+	--
+	-- Following 2 lines are meant as an example of EXTERNAL blocking commands:
+	-- http = require("socket.http")
+	-- print(http.request("http://www.google.com"))
+	--
+	-- sim.setThreadIsFree(false) -- End of the non-blocking section
+	--
+	-- While in a non-blocking section, try to avoid calling sim-functions. Also
+	-- never forget to close the blocking section, otherwise V-REP will hang.
+	-- Make sure you read the information related to the sim.setThreadIsFree
+	-- API function in V-REP's documentation.
+
+
+	-- If you wish to synchronize a threaded loop with each simulation pass,
+	-- set the thread switch timing in the initialization phase of this script
+	-- to the maximum (200), and manually switch thread here with the
+	-- sim.switchThread() command. 
+	-- ( sim.switchThread() will suspend this script's execution until next
+	-- simulation pass, i.e. until the simulation time has changed )
+	--
+	-- Following example illustrates this:
+	-- 
+	-- while true do
+	--     local p=sim.getObjectPosition(objHandle,-1)
+	--     p[1]=p[1]+0.001
+	--     sim.setObjectPosition(objHandle,-1,p)
+	--     sim.switchThread()
+	-- end
+end
+
+-- Put some initialization code here:
+sim.setThreadSwitchTiming(2) -- Default timing for automatic thread switching
+
+-- Here we execute the regular thread code:
+res,err=xpcall(threadFunction,function(err) return debug.traceback(err) end)
+if not res then
+	sim.addStatusbarMessage('Lua runtime error: '..err)
+end
+
+-- Put some clean-up code here:
+simRemoteApi.start(19999)
+</pre><h2>week11</h2>
 <h3>task3</h3>
 <p>影片直播</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/BaqrJgY4yKA" title="YouTube video player" width="560"></iframe></p>
