@@ -276,8 +276,43 @@ simRemoteApi.start(19999)
 <p> <a href="https://drive.google.com/file/d/13dzUp_j6U2PBHY1Gzl_1tzxSg7ULT8qi/view?usp=sharing">下載 RoboDK 5.2.2 可攜程式</a><span><span> </span>(</span><a href="https://drive.google.com/file/d/1IhQK5TRQTBBegG2LizypdE-i39n_T7fO/view?usp=sharing">5.2.3</a><span>) - 可用於工業機械手臂離線設計與模擬</span></p>
 <p><span><a href="https://drive.google.com/file/d/1XoB3F5cPK8R4Y8AIWL5pKR5TQjPW8TRv/view?usp=sharing">Pick and Place 檔案下載</a></span></p>
 <p><span>開啟 Pick and Place 專案檔案後, Python 以 pip install robodk 後, 可以開啟下列控制程式, 逐一由機械手臂將球從 Table1 取放至 Table2, 圓球排列方式採 </span><a href="https://en.wikipedia.org/wiki/Square_pyramid">Square Pyramid</a><span>. 使用者可精確送出各球座標位置, 導引機械手臂取放圓球</span></p>
-<p></p><h3>影片直播</h3>
+<p></p>
+<h3>影片直播</h3>
 <p>第一支</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/DxpgK7z7EH0" title="YouTube video player" width="560"></iframe></p>
 <p>第二支</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/2ypzUa548uc" title="YouTube video player" width="560"></iframe></p>
+<h2>week13</h2>
+<h4>RoboDK 機械手臂 Pick and Place Python API 程式:</h4>
+<p><a href="https://drive.google.com/file/d/13dzUp_j6U2PBHY1Gzl_1tzxSg7ULT8qi/view?usp=sharing">下載 RoboDK 5.2.2 可攜程式</a><span><span> </span>(</span><a href="https://drive.google.com/file/d/1IhQK5TRQTBBegG2LizypdE-i39n_T7fO/view?usp=sharing">5.2.3</a><span>) </span></p>
+<p><span>完整的 </span><a href="https://drive.google.com/file/d/1XoB3F5cPK8R4Y8AIWL5pKR5TQjPW8TRv/view?usp=sharing">Pick and Place 檔案下載</a></p>
+<p><a href="https://drive.google.com/file/d/1WRX6i6cA_f8ER6kN8yNwt1sdZTLMhl4J/view?usp=sharing">下載 CoppeliaSim 4.1.0 可攜程式</a><span><span> </span>(使用舊版的) </span></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/sQ6QacdSuYY" title="YouTube video player" width="560"></iframe></p>
+<h2>week14</h2>
+<p>創造第二個雲端 Gitlab(第二次備份)</p>
+<h4>Gitlab 同步</h4>
+<p>要利用 Gitlab 同步位於 Github 上的 CMSiMDE 倉儲與 Github Pages 網頁, 需要注意以下兩個要點:</p>
+<ol>
+<li>完成<span>   </span><span> </span>帳號申請與驗證.</li>
+<li>在原先 Github 倉儲中增加一個 .gitlab-ci.yml 檔案, 目的是用來產生與倉儲對應的 Gitlab Pages 網站.</li>
+</ol>
+<p>step1. 申請帳號</p>
+<p><img alt="" height="338" src="/images/gitlab1.jpg" width="565"/></p>
+<p>step2. 設定(記得設為Private)</p>
+<p></p>
+<p><img alt="" height="549" src="/images/gitlab2.jpg" width="574"/></p>
+<p>step3. 把github的資料推到Gitlab上面</p>
+<p><img alt="" height="142" src="/images/gitlab3.jpg" width="571"/></p>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">Y:\&gt;G:
+
+G:\cd2021\kmol2021_spring_v2\kmol2021_spring_v2&gt;cd data
+
+G:\cd2021\kmol2021_spring_v2\kmol2021_spring_v2\data&gt;cd tmp
+
+G:\cd2021\kmol2021_spring_v2\kmol2021_spring_v2\data\tmp&gt;cd cd2021
+
+G:\cd2021\kmol2021_spring_v2\kmol2021_spring_v2\data\tmp\cd2021&gt;git push gitlab
+</pre>
+<p></p>
+<h2>week15</h2>
