@@ -133,23 +133,54 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">week16 << <a href='week16.html'>Previous</a> <a href='w16.html'>Next</a> >> w16<br /><h1>Fossil</h1>
-<p>step1  download <a href="https://fossil-scm.org/home/uv/download.html"> Fossil</a> 存到 Y 槽</p>
-<p>step2 打指令 </p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">1. G:\cd2021\kmol2021_spring_v2\kmol2021_spring_v2\data\tmp\W16\fossil&gt; 
-2. fossil clone https://40823111@fossil.kmol.info/u/cda cda.fossil
-3.mkdir cda
-4.G:\cd2021\kmol2021_spring_v2\kmol2021_spring_v2\data\tmp\W16\fossil\wd\cda&gt;
-5.fossil open ./../../cda.fossil
-6. 確定有fossil的檔案 然後把倉儲的資料cd2021裡面的東西全部複製到cda的目錄下
-7.fossil add .
-8.fossil commit -m"檔案名稱 "
-9.確定推上去就成功了
-10. 開啟網頁 https://fossil.kmol.info/u/cda/doc/trunk/index.html
+    <div id="tipue_search_content">RoboDK 機械手臂 Pick and Place Python API 程式: << <a href='RoboDK 機械手臂 Pick and Place Python API 程式:.html'>Previous</a> <a href='week14.html'>Next</a> >> week14<br /><h1>FANUC_M710iC_50 機械手臂Remote Api</h1>
+<p><a href="https://drive.google.com/drive/folders/103yUZpCL7cojqVvgnAuj180KEq8Iz5rC?usp=sharing">FANUC_M710iC_50.ttt</a></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/5NA08LdLOWI" title="YouTube video player" width="560"></iframe></p>
+<p><span></span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import sim as vrep
+import sys
+import keyboard
+import math
+import time
+# child threaded script: 
+#simExtRemoteApiStart(19999)
+  
+vrep.simxFinish(-1)
+clientID = vrep.simxStart('127.0.0.1', 19999, True, True, 5000, 5)
+errorCode,left_motor_handle=vrep.simxGetObjectHandle(clientID,'Revolute_joint',vrep.simx_opmode_oneshot_wait)
+errorCode,right_motor_handle=vrep.simxGetObjectHandle(clientID,'Revolute_joint1',vrep.simx_opmode_oneshot_wait)
+ 
+ 
+if clientID!= -1:
+    print("Connected to remote server")
+    while True: 
+        try:
+            if keyboard.is_pressed('up'):
+                  vrep.simxSetJointTargetVelocity(clientID,left_motor_handle,-0.1, vrep.simx_opmode_oneshot_wait)
+                  vrep.simxSetJointTargetVelocity(clientID,right_motor_handle,-0.1, vrep.simx_opmode_oneshot_wait)
+                  print('up')
+            if keyboard.is_pressed('down'):     
+                  vrep.simxSetJointTargetVelocity(clientID,left_motor_handle,0.1, vrep.simx_opmode_oneshot_wait)
+                  vrep.simxSetJointTargetVelocity(clientID,right_motor_handle,0.1, vrep.simx_opmode_oneshot_wait)
+                  print('down')
+            if keyboard.is_pressed('space'):
+                  vrep.simxSetJointTargetVelocity(clientID,left_motor_handle,0 , vrep.simx_opmode_oneshot_wait)
+                  print('space')
+            if keyboard.is_pressed('z'):
+                 vrep.simxSetJointTargetVelocity(clientID,left_motor_handle,0 , vrep.simx_opmode_oneshot_wait)
+                 print('break ')
+                 break
+            else:
+                pass
+        except:
+            break
+else: 
+    print('Connection not successful')
+    sys.exit('Could not connect')
 </pre>
-<p><img alt="" height="292" src="./../images/cmd_0ikTvGyyWk.png" width="571"/></p>
-<p><img alt="" height="291" src="./../images/cmd_6WMKL3fgy4.png" width="569"/></p>
-<br />week16 << <a href='week16.html'>Previous</a> <a href='w16.html'>Next</a> >> w16</div>
+<p><span></span></p>
+<p><span></span></p>
+<br />RoboDK 機械手臂 Pick and Place Python API 程式: << <a href='RoboDK 機械手臂 Pick and Place Python API 程式:.html'>Previous</a> <a href='week14.html'>Next</a> >> week14</div>
         
     <!-- footer -->
       <div class="container">

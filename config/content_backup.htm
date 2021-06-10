@@ -289,10 +289,52 @@ simRemoteApi.start(19999)
 <p><a href="https://drive.google.com/file/d/1WRX6i6cA_f8ER6kN8yNwt1sdZTLMhl4J/view?usp=sharing">下載 CoppeliaSim 4.1.0 可攜程式</a><span><span> </span>(使用舊版的) </span></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/sQ6QacdSuYY" title="YouTube video player" width="560"></iframe></p>
 <h3><span>FANUC_M710iC_50 機械手臂Remote Api</span></h3>
-
-
-
-
+<p><a href="https://drive.google.com/drive/folders/103yUZpCL7cojqVvgnAuj180KEq8Iz5rC?usp=sharing">FANUC_M710iC_50.ttt</a></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/5NA08LdLOWI" title="YouTube video player" width="560"></iframe></p>
+<p><span></span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import sim as vrep
+import sys
+import keyboard
+import math
+import time
+# child threaded script: 
+#simExtRemoteApiStart(19999)
+  
+vrep.simxFinish(-1)
+clientID = vrep.simxStart('127.0.0.1', 19999, True, True, 5000, 5)
+errorCode,left_motor_handle=vrep.simxGetObjectHandle(clientID,'Revolute_joint',vrep.simx_opmode_oneshot_wait)
+errorCode,right_motor_handle=vrep.simxGetObjectHandle(clientID,'Revolute_joint1',vrep.simx_opmode_oneshot_wait)
+ 
+ 
+if clientID!= -1:
+    print("Connected to remote server")
+    while True: 
+        try:
+            if keyboard.is_pressed('up'):
+                  vrep.simxSetJointTargetVelocity(clientID,left_motor_handle,-0.1, vrep.simx_opmode_oneshot_wait)
+                  vrep.simxSetJointTargetVelocity(clientID,right_motor_handle,-0.1, vrep.simx_opmode_oneshot_wait)
+                  print('up')
+            if keyboard.is_pressed('down'):     
+                  vrep.simxSetJointTargetVelocity(clientID,left_motor_handle,0.1, vrep.simx_opmode_oneshot_wait)
+                  vrep.simxSetJointTargetVelocity(clientID,right_motor_handle,0.1, vrep.simx_opmode_oneshot_wait)
+                  print('down')
+            if keyboard.is_pressed('space'):
+                  vrep.simxSetJointTargetVelocity(clientID,left_motor_handle,0 , vrep.simx_opmode_oneshot_wait)
+                  print('space')
+            if keyboard.is_pressed('z'):
+                 vrep.simxSetJointTargetVelocity(clientID,left_motor_handle,0 , vrep.simx_opmode_oneshot_wait)
+                 print('break ')
+                 break
+            else:
+                pass
+        except:
+            break
+else: 
+    print('Connection not successful')
+    sys.exit('Could not connect')
+</pre>
+<p><span></span></p>
+<p><span></span></p>
 <h2>week14</h2>
 <p>創造第二個雲端 Gitlab(第二次備份)</p>
 <h4>Gitlab 同步</h4>
