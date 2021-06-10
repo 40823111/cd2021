@@ -122,7 +122,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='Introduction.html'>Introduction</a><li class='has-children'><a href='leo.html'>leo</a><ul class='dropdown'><li><a href='edit blog.html'>edit blog</a><li><a href='edit Reveal.html'>edit Reveal</a></li></ul><li><a href='old repositories update.html'>old repositories update</a><li><a href='repositories create.html'>repositories create</a><li class='has-children'><a href='stage1.html'>stage1</a><ul class='dropdown'><li><a href='week1.html'>week1</a><li><a href='week2.html'>week2</a><li><a href='week3.html'>week3</a><li><a href='week4.html'>week4</a></li></ul><li class='has-children'><a href='stage2.html'>stage2</a><ul class='dropdown'><li><a href='week5.html'>week5</a><li><a href='week6.html'>week6</a><li><a href='week7.html'>week7</a><li><a href='week8.html'>week8</a><li><a href='week9.html'>week9</a></li></ul><li class='has-children'><a href='stage3.html'>stage3</a><ul class='dropdown'><li class='has-children'><a href='week10.html'>week10</a><ul class='dropdown'><li><a href='task1.html'>task1</a><li><a href='task2.html'>task2</a></li></ul><li class='has-children'><a href='week11.html'>week11</a><ul class='dropdown'><li><a href='task3.html'>task3</a></li></ul><li class='has-children'><a href='week12.html'>week12</a><ul class='dropdown'><li><a href='topic.html'>topic</a><li><a href='影片直播.html'>影片直播</a></li></ul><li><a href='week13.html'>week13</a><li><a href='week14.html'>week14</a><li class='has-children'><a href='week15.html'>week15</a><ul class='dropdown'><li><a href='Gogs.html'>Gogs</a><li><a href='Film.html'>Film</a></li>
+                     <li><a href='Introduction.html'>Introduction</a><li class='has-children'><a href='leo.html'>leo</a><ul class='dropdown'><li><a href='edit blog.html'>edit blog</a><li><a href='edit Reveal.html'>edit Reveal</a></li></ul><li><a href='old repositories update.html'>old repositories update</a><li><a href='repositories create.html'>repositories create</a><li class='has-children'><a href='stage1.html'>stage1</a><ul class='dropdown'><li><a href='week1.html'>week1</a><li><a href='week2.html'>week2</a><li><a href='week3.html'>week3</a><li><a href='week4.html'>week4</a></li></ul><li class='has-children'><a href='stage2.html'>stage2</a><ul class='dropdown'><li><a href='week5.html'>week5</a><li><a href='week6.html'>week6</a><li><a href='week7.html'>week7</a><li><a href='week8.html'>week8</a><li><a href='week9.html'>week9</a></li></ul><li class='has-children'><a href='stage3.html'>stage3</a><ul class='dropdown'><li class='has-children'><a href='week10.html'>week10</a><ul class='dropdown'><li><a href='task1.html'>task1</a><li><a href='task2.html'>task2</a></li></ul><li class='has-children'><a href='week11.html'>week11</a><ul class='dropdown'><li><a href='task3.html'>task3</a></li></ul><li class='has-children'><a href='week12.html'>week12</a><ul class='dropdown'><li><a href='topic.html'>topic</a><li><a href='影片直播.html'>影片直播</a></li></ul><li><a href='week13.html'>week13</a><li><a href='week14.html'>week14</a><li class='has-children'><a href='week15.html'>week15</a><ul class='dropdown'><li><a href='part 1-joint.html'>part 1-joint</a><li><a href='part 2-joint.html'>part 2-joint</a></li>
                       </ul>
                 </nav>
               </div>
@@ -133,8 +133,117 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">week15 << <a href='week15.html'>Previous</a> <a href='Film.html'>Next</a> >> Film<br /><h1>Gogs</h1>
-<br />week15 << <a href='week15.html'>Previous</a> <a href='Film.html'>Next</a> >> Film</div>
+    <div id="tipue_search_content">week15 << <a href='week15.html'>Previous</a> <a href='part 2-joint.html'>Next</a> >> part 2-joint<br /><h1>part 1-joint</h1>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/IKOGwoJ2HLk" title="YouTube video player" width="560"></iframe></p>
+<p>We saw this simple two-link robot in the previous lecture about forward kinematics.</p>
+<p></p>
+<p>The tooltip pose of this robot is discribed simply by two number ,the coordinates x and y with</p>
+<p>respect to the world coordinate frame.</p>
+<p></p>
+<p>So, the problem here is that given x and y, we want to determine the joined angles, Q1 and</p>
+<p>Q2.  </p>
+<p></p>
+<p>The solution that we're going to follow in this particular section is a geometric</p>
+<p></p>
+<p>ONE. We're going to start with a simple piece of construction.</p>
+<p></p>
+<p><span>We're going to overlay the red triangle on top of our robot.</span></p>
+<p><span></span></p>
+<p><span>We know that the end point coordinate is x, y, so the vertical height of the triangle is y,horizontal width is x.</span></p>
+<p><span></span></p>
+<p><span>And, using Pythagoras theorem, we can write thagoras r squared equals x squared plus y squared.</span></p>
+<p><span></span></p>
+<p><span>So far.so easy. Now, we're going to look at this triangle highlighted here in red and we want to determine the angle alpha.</span></p>
+<p><span></span></p>
+<p><span>In order to do that, we need to use the cosine rule.</span></p>
+<p><span></span></p>
+<p><span>And, if you're a little rusty on the cosine rule, here is a bit of a refresher.</span></p>
+<p><span></span></p>
+<p><span>We have an arbitrary triangle.</span></p>
+<p></p>
+<p><span>We don't have to have any right angles in it and we're going to label the length of this edge as A and the angle opposite that edge, we're going to label as little a.</span></p>
+<p><span></span></p>
+<p><span>And, we do the same for this edge and this angle, and this edge and this angle.</span></p>
+<p><span></span></p>
+<p><span>So, all together, the sides are labelled capitals A, B and C, and the angles are labelled little a, little b, and little c.</span></p>
+<p><span></span></p>
+<p><span>So, the cosine rule is simply this relationship here.</span></p>
+<p><span></span></p>
+<p><span>It's a bit like Pythagoras' theorem except for this extra term on the end with the cos a in it.</span></p>
+<p><span></span></p>
+<p><span>Now, let's apply the cosine rule to the particular triangle we looked at a moment rul ago.</span></p>
+<p><span></span></p>
+<p><span>It's pretty straightforward to write down this particular relationship.</span></p>
+<p><span></span></p>
+<p><span>We can isolate the term cos alpha which gives us the angle alpha that we're interested in.</span></p>
+<p><span></span></p>
+<p><span>And, it's defined in terms of the constant link lengths, A1 and A2 and the position of the end effector,x and y.</span></p>
+<p><span></span></p>
+<p><span>We can write this simple relationship between the angles alpha and Q2.</span></p>
+<p><span></span></p>
+<p><span>And, we know from the shape of the cosine function that cos of Q2 must be equal to negative of cos alpha.</span></p>
+<p><span></span></p>
+<p><span>This time, let's just write an expression for the cosine of the joined angle Q2.</span></p>
+<p><span></span></p>
+<p><span>Now, we're going to draw yet another red triangle and we're going apply some simple trigonometry here.</span></p>
+<p><span></span></p>
+<p><span>If we know Q2, then we know this length and this length of the red triangle.</span></p>
+<p><span></span></p>
+<p><span>We can write this relationship for the sine of the joined angle Q2.</span></p>
+<p><span></span></p>
+<p><span>Now, we can consider this bigger triangle whose angle is beta and this side length of the triangle is given here in blue.</span></p>
+<p><span></span></p>
+<p><span>And, the length of the other side of the triangle is this.</span></p>
+<p><span></span></p>
+<p><span>So, now we can write an expression for the angle beta in terms of these parameters here.</span></p>
+<p><span></span></p>
+<p><span>Going back to the red triangle that we drew earlier, we can establish a relationship between Q1 and the angle beta.</span></p>
+<p><span></span></p>
+<p><span>Introduce yet another angle, this one gamma and we can write a relationship between the angle gamma and the tooltip coordinates x and y.</span></p>
+<p><span></span></p>
+<p><span>Now, we can write a simple relationship between the angles that we've constructed, gamma and beta and the joined angle we're interested in which is Q1.</span></p>
+<p><span></span></p>
+<p><span>And, the total relationship looks something like this.</span></p>
+<p><span></span></p>
+<p><span>Quite a complex relationship, it gives us the angle of joined one, that's Q1 in terms of the end effector coordinates y and x, and a bunch of constants, a1 and a2, and it's also a function of the second joint angle, Q2.</span></p>
+<p><span></span></p>
+<p><span>So, let's summarize what it is that we have derived here.1</span></p>
+<p><span></span></p>
+<p><span>We have an expression for the cosine of Q2 and we have an expression for Q1.</span></p>
+<p><span></span></p>
+<p><span>Now, the cosine function is symmetrical about 0.</span></p>
+<p><span></span></p>
+<p><span>So, if we know the value of the cosine of Q2, then there are two possible solutions, a positive angle and a negative angle</span></p>
+<p><span></span></p>
+<p><span>We're going to explicitly choose the positive angle, which means that I can write this expression here.</span></p>
+<p><span></span></p>
+<p><span>And now, we have what we call the inverse kinematic solution for this two-link robot.</span></p>
+<p><span></span></p>
+<p><span>We have an expression for the two joined angles, Q1 and Q2 in terms of the end effector pose x and y, and a bunch of constants.</span></p>
+<p><span></span></p>
+<p><span>You notice that the two equations are not independent.</span></p>
+<p><span></span></p>
+<p><span>The equation for Q1, in fact, depends on the solution for Q2.</span></p>
+<p><span></span></p>
+<p><span>In this case, Q2 is negative and we're going to write the solution for Q2 with a negative sign in front of the inverse cosine.</span></p>
+<p><span></span></p>
+<p><span>Now, we need to solve for Q1, so we're going to introduce this particular red triangle, the angle beta that we solved previously, and the angle gamma which is defined in terms of y and x.</span></p>
+<p><span></span></p>
+<p><span>Now, we write a slightly different relationship between q1, gamma and beta, different to what we had before.</span></p>
+<p><span></span></p>
+<p><span>There’s a change of sign involved.</span></p>
+<p><span></span></p>
+<p><span>Then, we can substitute all that previous equation and come up with this expression for q1.</span></p>
+<p><span></span></p>
+<p><span>Again, there is a change of sign here.</span></p>
+<p><span></span></p>
+<p><span>Previously, this was a negative sign.</span></p>
+<p><span></span></p>
+<p><span>And, here in summary form is the solution for the inverse kinematics of our two-link robot when it is in this particular configuration, where q2 is negative.</span></p>
+<p><span></span></p>
+<p><span>Let’s compare the two solutions, the case where q2 is positive and the case where q2 is negative.</span></p>
+<p><span></span></p>
+<br />week15 << <a href='week15.html'>Previous</a> <a href='part 2-joint.html'>Next</a> >> part 2-joint</div>
         
     <!-- footer -->
       <div class="container">
