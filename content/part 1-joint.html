@@ -136,114 +136,113 @@ img.add_border {
     <div id="tipue_search_content">week15 << <a href='week15.html'>Previous</a> <a href='part 2-joint.html'>Next</a> >> part 2-joint<br /><h1>part 1-joint</h1>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/IKOGwoJ2HLk" title="YouTube video player" width="560"></iframe></p>
 <p>We saw this simple two-link robot in the previous lecture about forward kinematics.</p>
-<p></p>
+<p>我們在上一堂關於正向運動學的講座中看到了這個簡單的雙連桿機器人</p>
 <p>The tooltip pose of this robot is discribed simply by two number ,the coordinates x and y with</p>
 <p>respect to the world coordinate frame.</p>
-<p></p>
+<p>這個機器人的工具提示位姿簡單地由兩個數字來描述，坐標 x 和 y 與相對於世界坐標系。</p>
 <p>So, the problem here is that given x and y, we want to determine the joined angles, Q1 and</p>
 <p>Q2.  </p>
-<p></p>
+<p>所以，這裡的問題是給定 x 和 y，我們想要確定連接角 Q1 和 Q2。</p>
 <p>The solution that we're going to follow in this particular section is a geometric</p>
-<p></p>
+<p>我們將在本節中遵循的解決方案是幾何</p>
 <p>ONE. We're going to start with a simple piece of construction.</p>
-<p></p>
+<p>一。 我們將從一個簡單的結構開始。</p>
 <p><span>We're going to overlay the red triangle on top of our robot.</span></p>
-<p><span></span></p>
+<p><span>我們將在我們的機器人頂部覆蓋紅色三角形。</span></p>
 <p><span>We know that the end point coordinate is x, y, so the vertical height of the triangle is y,horizontal width is x.</span></p>
-<p><span></span></p>
+<p><span>我們知道終點坐標是x，y，所以三角形的垂直高度是y，水平寬度是x。</span></p>
 <p><span>And, using Pythagoras theorem, we can write thagoras r squared equals x squared plus y squared.</span></p>
-<p><span></span></p>
+<p><span>並且，使用畢達哥拉斯定理，我們可以寫出 畢氏定理  r 平方等於 x 平方加 y 平方。</span></p>
 <p><span>So far.so easy. Now, we're going to look at this triangle highlighted here in red and we want to determine the angle alpha.</span></p>
-<p><span></span></p>
+<p><span></span>到目前為止，很容易。 現在，我們將查看此處以紅色突出顯示的三角形，我們要確定角度α。</p>
 <p><span>In order to do that, we need to use the cosine rule.</span></p>
-<p><span></span></p>
+<p><span>為了做到這一點，我們需要使用 cos 規則。</span></p>
 <p><span>And, if you're a little rusty on the cosine rule, here is a bit of a refresher.</span></p>
-<p><span></span></p>
+<p><span>而且，如果你對 cos 規則有點生疏，這裡有一點複習。</span></p>
 <p><span>We have an arbitrary triangle.</span></p>
-<p></p>
+<p>我們有一個任意三角形。</p>
 <p><span>We don't have to have any right angles in it and we're going to label the length of this edge as A and the angle opposite that edge, we're going to label as little a.</span></p>
-<p><span></span></p>
+<p><span></span>我們不必在其中有任何直角，我們將這條邊的長度標記為 A，而與該邊相對的角度，我們將標記為小 a。</p>
 <p><span>And, we do the same for this edge and this angle, and this edge and this angle.</span></p>
-<p><span></span></p>
+<p><span>並且，我們對這條邊和這個角，以及這條邊和這個角做同樣的事情。</span></p>
 <p><span>So, all together, the sides are labelled capitals A, B and C, and the angles are labelled little a, little b, and little c.</span></p>
-<p><span></span></p>
+<p><span>因此，所有邊都標記為大寫字母 A、B 和 C，角標記為小 a、小 b 和小 c。</span></p>
 <p><span>So, the cosine rule is simply this relationship here.</span></p>
-<p><span></span></p>
+<p><span>所以，cos 規則就是這裡的這種關係。</span></p>
 <p><span>It's a bit like Pythagoras' theorem except for this extra term on the end with the cos a in it.</span></p>
-<p><span></span></p>
+<p><span></span>它有點像畢達哥拉斯的定理，除了最後一個額外的術語，其中有 cos a。</p>
 <p><span>Now, let's apply the cosine rule to the particular triangle we looked at a moment rul ago.</span></p>
-<p><span></span></p>
+<p><span>現在，讓我們將 cos 規則應用於我們剛才看到的特定三角形。</span></p>
 <p><span>It's pretty straightforward to write down this particular relationship.</span></p>
-<p><span></span></p>
+<p><span>寫下這種特殊關係非常簡單。</span></p>
 <p><span>We can isolate the term cos alpha which gives us the angle alpha that we're interested in.</span></p>
-<p><span></span></p>
+<p><span>我們可以分離出術語 cos α，它為我們提供了我們感興趣的角度 α。</span></p>
 <p><span>And, it's defined in terms of the constant link lengths, A1 and A2 and the position of the end effector,x and y.</span></p>
-<p><span></span></p>
+<p><span>而且，它是根據恆定連桿長度 A1 和 A2 以及末端執行器的位置 x 和 y 定義的。</span></p>
 <p><span>We can write this simple relationship between the angles alpha and Q2.</span></p>
-<p><span></span></p>
+<p><span>我們可以寫出角度 α 和 Q2 之間的這種簡單關係。</span></p>
 <p><span>And, we know from the shape of the cosine function that cos of Q2 must be equal to negative of cos alpha.</span></p>
-<p><span></span></p>
+<p><span>而且，我們從餘弦函數的形狀知道，Q2 的 cos 必須等於 cos α 的負值。</span></p>
 <p><span>This time, let's just write an expression for the cosine of the joined angle Q2.</span></p>
-<p><span></span></p>
+<p><span>這一次，讓我們為連接角 Q2 的cos寫一個表達式。</span></p>
 <p><span>Now, we're going to draw yet another red triangle and we're going apply some simple trigonometry here.</span></p>
-<p><span></span></p>
+<p><span>現在，我們將繪製另一個紅色三角形，並在此處應用一些簡單的三角函數。</span></p>
 <p><span>If we know Q2, then we know this length and this length of the red triangle.</span></p>
-<p><span></span></p>
+<p><span>如果我們知道 Q2，那麼我們就知道這個長度和這個紅色三角形的長度。</span></p>
 <p><span>We can write this relationship for the sine of the joined angle Q2.</span></p>
-<p><span></span></p>
+<p><span>我們可以為連接角 Q2 的 sin 寫出這種關係。</span></p>
 <p><span>Now, we can consider this bigger triangle whose angle is beta and this side length of the triangle is given here in blue.</span></p>
-<p><span></span></p>
+<p><span>現在，我們可以考慮這個更大的三角形，它的角是β，三角形的這條邊長在這裡用藍色給出。</span></p>
 <p><span>And, the length of the other side of the triangle is this.</span></p>
-<p><span></span></p>
+<p><span>並且，三角形另一邊的長度是這個。</span></p>
 <p><span>So, now we can write an expression for the angle beta in terms of these parameters here.</span></p>
-<p><span></span></p>
+<p><span></span>所以，現在我們可以在此處根據這些參數編寫角度 <span>β</span> 的表達式。</p>
 <p><span>Going back to the red triangle that we drew earlier, we can establish a relationship between Q1 and the angle beta.</span></p>
-<p><span></span></p>
+<p><span>回到我們之前畫的紅色三角形，我們可以建立 Q1和角度 β 之間的關係。</span></p>
 <p><span>Introduce yet another angle, this one gamma and we can write a relationship between the angle gamma and the tooltip coordinates x and y.</span></p>
-<p><span></span></p>
+<p><span>引入另一個角度，這個 ɣ，我們可以寫出角度 ɣ 和工具提示坐標 x 和 y 之間的關係。</span></p>
 <p><span>Now, we can write a simple relationship between the angles that we've constructed, gamma and beta and the joined angle we're interested in which is Q1.</span></p>
-<p><span></span></p>
+<p><span></span>現在，我們可以在我們構建的角度 <span>ɣ </span>和 <span>β</span> 與我們感興趣的連接角度 Q1 之間寫出一個簡單的關係。</p>
 <p><span>And, the total relationship looks something like this.</span></p>
-<p><span></span></p>
+<p><span>而且，整個關係看起來像這樣。</span></p>
 <p><span>Quite a complex relationship, it gives us the angle of joined one, that's Q1 in terms of the end effector coordinates y and x, and a bunch of constants, a1 and a2, and it's also a function of the second joint angle, Q2.</span></p>
-<p><span></span></p>
+<p><span>相當複雜的關係，它為我們提供了連接的角度，即根據末端執行器坐標 y 和 x 的 Q1，以及一系列常量 a1 和 a2，它也是第二個關節角度 Q2 的函數。</span></p>
 <p><span>So, let's summarize what it is that we have derived here.1</span></p>
-<p><span></span></p>
+<p><span>所以，讓我們總結一下我們在這裡得出的結論。1</span></p>
 <p><span>We have an expression for the cosine of Q2 and we have an expression for Q1.</span></p>
-<p><span></span></p>
+<p><span>我們有 Q2 的 cos 表達式和 Q1 的表達式。</span></p>
 <p><span>Now, the cosine function is symmetrical about 0.</span></p>
-<p><span></span></p>
+<p><span>現在，cos 函數關於 0 對稱。</span></p>
 <p><span>So, if we know the value of the cosine of Q2, then there are two possible solutions, a positive angle and a negative angle</span></p>
-<p><span></span></p>
+<p><span>所以，如果我們知道 Q2 的 cos 值，那麼有兩種可能的解，一個正角和一個負角</span></p>
 <p><span>We're going to explicitly choose the positive angle, which means that I can write this expression here.</span></p>
-<p><span></span></p>
+<p><span>我們將明確選擇正角，這意味著我可以在這裡寫這個表達式。</span></p>
 <p><span>And now, we have what we call the inverse kinematic solution for this two-link robot.</span></p>
-<p><span></span></p>
+<p><span>現在，我們有了這個雙連桿機器人的逆運動學解決方案。</span></p>
 <p><span>We have an expression for the two joined angles, Q1 and Q2 in terms of the end effector pose x and y, and a bunch of constants.</span></p>
-<p><span></span></p>
+<p><span>我們有兩個連接角 Q1 和 Q2 的表達式，根據末端執行器姿勢 x 和 y 以及一系列常數。</span></p>
 <p><span>You notice that the two equations are not independent.</span></p>
-<p><span></span></p>
+<p><span>你注意到這兩個方程不是獨立的。</span></p>
 <p><span>The equation for Q1, in fact, depends on the solution for Q2.</span></p>
-<p><span></span></p>
+<p><span>事實上，Q1 的方程取決於 Q2 的解。</span></p>
 <p><span>In this case, Q2 is negative and we're going to write the solution for Q2 with a negative sign in front of the inverse cosine.</span></p>
-<p><span></span></p>
+<p><span>在這種情況下，Q2 是負數，我們將在反 cos 前用負號編寫 Q2 的解。</span></p>
 <p><span>Now, we need to solve for Q1, so we're going to introduce this particular red triangle, the angle beta that we solved previously, and the angle gamma which is defined in terms of y and x.</span></p>
-<p><span></span></p>
+<p><span>現在，我們需要求解 Q1，因此我們將介紹這個特定的紅色三角形、我們之前求解的角度 <span>β</span> 以及根據 y 和 x 定義的角度 ɣ。</span></p>
 <p><span>Now, we write a slightly different relationship between q1, gamma and beta, different to what we had before.</span></p>
-<p><span></span></p>
+<p><span>現在，我們在 q1、ɣ  和 β 之間寫出略有不同的關係，與我們之前的關係不同。</span></p>
 <p><span>There’s a change of sign involved.</span></p>
-<p><span></span></p>
+<p><span>涉及到符號的變化。</span></p>
 <p><span>Then, we can substitute all that previous equation and come up with this expression for q1.</span></p>
-<p><span></span></p>
+<p><span>然後，我們可以替換之前的所有等式，並得出 q1 的這個表達式。</span></p>
 <p><span>Again, there is a change of sign here.</span></p>
-<p><span></span></p>
+<p><span>同樣，這裡的符號發生了變化。</span></p>
 <p><span>Previously, this was a negative sign.</span></p>
-<p><span></span></p>
+<p><span>以前，這是一個負面信號。</span></p>
 <p><span>And, here in summary form is the solution for the inverse kinematics of our two-link robot when it is in this particular configuration, where q2 is negative.</span></p>
-<p><span></span></p>
+<p><span>並且，這裡總結性地是我們的雙連桿機器人在這種特定配置下的逆運動學的解決方案，其中 q2 是負數。</span></p>
 <p><span>Let’s compare the two solutions, the case where q2 is positive and the case where q2 is negative.</span></p>
-<p><span></span></p>
-<br />week15 << <a href='week15.html'>Previous</a> <a href='part 2-joint.html'>Next</a> >> part 2-joint</div>
+<p><span>讓我們比較兩個解決方案，q2 為正的情況和 q2 為負的情況。</span></p><br />week15 << <a href='week15.html'>Previous</a> <a href='part 2-joint.html'>Next</a> >> part 2-joint</div>
         
     <!-- footer -->
       <div class="container">
