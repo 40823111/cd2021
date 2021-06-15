@@ -355,7 +355,7 @@ simRemoteApi.start(19999)
 <p>第二支</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/2ypzUa548uc" title="YouTube video player" width="560"></iframe></p>
 <h2>week13</h2>
-<h3>RoboDK </h3>
+<h3>RoboDK</h3>
 <p>機械手臂 Pick and Place Python API 程式:</p>
 <p><a href="https://drive.google.com/file/d/13dzUp_j6U2PBHY1Gzl_1tzxSg7ULT8qi/view?usp=sharing">下載 RoboDK 5.2.2 可攜程式</a><span><span> </span>(</span><a href="https://drive.google.com/file/d/1IhQK5TRQTBBegG2LizypdE-i39n_T7fO/view?usp=sharing">5.2.3</a><span>) </span></p>
 <p><span>完整的 </span><a href="https://drive.google.com/file/d/1XoB3F5cPK8R4Y8AIWL5pKR5TQjPW8TRv/view?usp=sharing">Pick and Place 檔案下載</a></p>
@@ -620,15 +620,96 @@ G:\cd2021\kmol2021_spring_v2\kmol2021_spring_v2\data\tmp\cd2021&gt;git push gitl
 <p></p>
 <h4>(2) 建立 CoppeliaSim 4.1.0 MTB robot 場景</h4>
 <p>檔案下載: 請點我</p>
+<p><a href="https://github.com/40823111/cd2021/blob/main/remote%20api/MTB_passive.ttt">MTB_passive.ttt</a></p>
+<p><a href="https://github.com/40823111/cd2021/blob/main/remote%20api/MTB.leo">MTB.leo</a></p>
+<p><a href="https://github.com/40823111/cd2021/blob/main/remote%20api/MTB.lua">MTB.lua</a></p>
+<p><a href="https://github.com/40823111/cd2021/blob/main/remote%20api/suctionpad_w14.lua">suctionpad_w14.lua</a></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/qVddNGQSfX4" title="YouTube video player" width="560"></iframe></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function sysCall_init()
+    -- do some initialization here
+    joint_hanld1=sim.getObjectHandle('joint1')
+    joint_hanld2=sim.getObjectHandle('joint2')
+    joint_hanld3=sim.getObjectHandle('joint3')
+    joint_hanld4=sim.getObjectHandle('joint4')
+    suctionPad=sim.getObjectHandle('suctionPad')
+    angle=math.pi/180
+    angle1=0
+    angle2=0
+    d=0
+    a1=0.8
+    a2=0.8
+    x=0.2
+    y=0.7
+end
+
+function sysCall_actuation()
+    -- put your actuation code here
+    message, auxiliaryData=sim.getSimulatorMessage()
+        while message ~= -1 do
+            key=auxiliaryData[1]
+            sim.addStatusbarMessage('????? key:'..key)
+            if (message==sim.message_keypress) then
+                if (auxiliaryData[1]==100) then --d
+                    -- if key a pressed joint1 left
+                    angle1=angle1+angle
+                    sim.setJointPosition(joint_hanld1,angle1)
+                end -- if d
+                if (auxiliaryData[1]==97) then --a 
+                    -- if key d pressed joint1 right
+                    angle1=angle1-angle
+                    sim.setJointPosition(joint_hanld1,angle1)
+                end -- if a
+                if (auxiliaryData[1]==101) then --e
+                    -- if key e pressed joint2 left
+                    angle2=angle2+angle
+                    sim.setJointPosition(joint_hanld2,angle2)
+                end -- if d
+                if (auxiliaryData[1]==113) then --q 
+                    -- if key q pressed joint2 right
+                    angle2=angle2-angle
+                    sim.setJointPosition(joint_hanld2,angle2)
+                end -- if a
+                message, auxiliaryData=sim.getSimulatorMessage()
+                if (auxiliaryData[1]==56) then --8
+                    -- if key 8 pressed suctionpad up and active=ture
+                    d=d-0.05
+                    sim.setJointPosition(joint_hanld3,d)
+                    sim.setScriptSimulationParameter(sim.getScriptAssociatedWithObject(suctionPad),'active','ture')
+                end -- if 8
+                if (auxiliaryData[1]==53) then --5
+                    -- if key 8 pressed suctionpad down 
+                    sim.setJointPosition(joint_hanld3,0.084)
+                end -- if 5
+                if (auxiliaryData[1]==115) then --s
+                    -- if key s pressed active=false
+                    sim.setScriptSimulationParameter(sim.getScriptAssociatedWithObject(suctionPad),'active','false')
+                end -- if 5
+            end
+        end  
+end
+</pre>
 <p></p>
 <h4>(3) 手臂末端加入 components-gripper-suction pad 吸盤<span> </span></h4>
 <p><span></span></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/IlvvEVKlnmQ" title="YouTube video player" width="560"></iframe></p>
 <p><span></span></p>
 <h4>(4) 逆向運動學函式<span> </span></h4>
+<p><span>檔案下載</span></p>
+<p><a href="https://github.com/40823111/cd2021/blob/main/remote%20api/MTB_force%20mode.ttt">MTB_force mode.ttt</a></p>
+<p><a href="https://github.com/40823111/cd2021/blob/main/remote%20api/mtb_force%20mode.leo">mtb_force mode.leo</a></p>
+<p><a href="https://github.com/40823111/cd2021/blob/main/remote%20api/MTB_threadmain.lua">MTB_threadmain.lua</a></p>
+<p><a href="https://github.com/40823111/cd2021/blob/main/remote%20api/suctionpad_w14.lua">suctionpad_w14.lua</a></p>
+<p><span></span></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/21BpBzN5MFc" title="YouTube video player" width="560"></iframe></p>
 <p><span></span></p>
 <p><span></span></p>
 <h4>(5) Python remote API 逆向運動學函式</h4>
-<p></p>
-<p></p>
+<p><span>檔案下載</span></p>
+<p><a href='/get_page/week17/"https:/github.com/40823111/cd2021/blob/main/remote%20api/MTB_api.ttt&lt;/a'>MTB_api.ttt</a></p>
+<p><a href='/get_page/week17/"https:/github.com/40823111/cd2021/blob/main/remote%20api/MTB_api.py&lt;/a'>MTB_api.py</a></p>
+<p><a href='/get_page/week17/"https:/github.com/40823111/cd2021/blob/main/remote%20api/remoteApi.dll&lt;/a'>remoteApi.dll</a></p>
+<p><a href='/get_page/week17/"https:/github.com/40823111/cd2021/blob/main/remote%20api/sim.py&lt;/a'>sim.py</a></p>
+<p><a href='/get_page/week17/"https:/github.com/40823111/cd2021/blob/main/remote%20api/simConst.py&lt;/a'>simConst.py</a></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/h8g9JENWBh8" title="YouTube video player" width="560"></iframe></p>
 <p></p>
 <p></p>
