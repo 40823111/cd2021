@@ -197,7 +197,486 @@ git push</pre>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/pLdbxNwan2k" title="YouTube video player" width="560"></iframe></p>
 <p></p>
 <p><a href="https://github.com/40823111/cd2021/blob/main/123/final.ttt">棒球模擬機.ttt</a></p>
-<h1>stage3</h1>
+<p></p>
+<p><strong>手臂程式</strong></p>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">-- This is a threaded script, and is just an example!
+
+function sysCall_threadmain()
+
+    jointHandles={-1,-1,-1,-1,-1,-1}
+    for i=1,6,1 do
+        jointHandles[i]=sim.getObjectHandle('UR3_joint'..i)
+    end
+    
+    while sim.getSimulationState()~=sim.simulation_advancing_abouttostop do
+
+
+    -- Set-up some of the RML vectors:
+    vel=10000
+    accel=1000
+    jerk=0
+    currentVel={0,0,0,0,0,0,0}
+    currentAccel={0,0,0,0,0,0,0}
+    maxVel={vel*math.pi/180,vel*math.pi/180,vel*math.pi/180,vel*math.pi/180,vel*math.pi/180,vel*math.pi/180}
+    maxAccel={accel*math.pi/180,accel*math.pi/180,accel*math.pi/180,accel*math.pi/180,accel*math.pi/180,accel*math.pi/180}
+    maxJerk={jerk*math.pi/180,jerk*math.pi/180,jerk*math.pi/180,jerk*math.pi/180,jerk*math.pi/180,jerk*math.pi/180}
+    targetVel={0,0,0,0,0,0}
+
+    targetPos1={150*math.pi/180,108*math.pi/180,-90*math.pi/180,90*math.pi/180,90*math.pi/180,90*math.pi/180}
+    sim.rmlMoveToJointPositions(jointHandles,-1,currentVel,currentAccel,maxVel,maxAccel,maxJerk,targetPos1,targetVel)
+
+    targetPos2={-90*math.pi/180,99*math.pi/180,-30*math.pi/360,-150*math.pi/180,-60*math.pi/180,90*math.pi/180}
+    sim.rmlMoveToJointPositions(jointHandles,-1,currentVel,currentAccel,maxVel,maxAccel,maxJerk,targetPos2,targetVel)
+    
+    targetPos3={0,0,0,0,0,0}
+    sim.rmlMoveToJointPositions(jointHandles,-1,currentVel,currentAccel,maxVel,maxAccel,maxJerk,targetPos3,targetVel)
+    end
+
+end
+</pre>
+<p>joint1手臂關節程式</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">threadFunction=function()
+    while sim.getSimulationState()~=sim.simulation_advancing_abouttostop do
+        -- Read the keyboard messages (make sure the focus is on the main window, scene view):
+        message,auxiliaryData=sim.getSimulatorMessage()
+        while message~=-1 do
+            if (message==sim.message_keypress) then
+                if (auxiliaryData[1]==97) then
+                    -- a key
+                    if(o &lt; i*99) then
+                    o = o+i
+                    velocity=velocity+0.11
+                    torque=torque+0.1
+                    hammer_back = 0
+                    end
+                end
+                if (auxiliaryData[1]==100) then
+                    -- d key 
+                    if(o &gt; -i*99) then
+                    o = o-i
+                    velocity=velocity-0.11
+                    torque=torque-0.1
+                    hammer_back = 1
+                    end
+                end
+                
+            end
+            message,auxiliaryData=sim.getSimulatorMessage()
+        end
+ 
+        -- We take care of setting the desired hammer position:
+        if hammer_back == 1
+            then 
+               sim.setJointPosition(joint, -1, orientation)
+               --sim.setObjectPosition(hammer,-1, position)
+        end
+        sim.setJointTargetPosition(joint, velocity)
+        --sim.setJointForce(joint,torque)
+
+        -- Since this script is threaded, don't waste time here:
+        sim.switchThread() -- Resume the script at next simulation loop start
+    end
+end
+-- Put some initialization code here:
+-- Retrieving of some handles and setting of some initial values:
+i = 1
+o = i*10
+joint=sim.getObjectHandle('redundantRob_joint1')
+hammer=sim.getObjectHandle('Rectangle')
+velocity=0
+hammer_back=0
+torque=0
+sliding = 0
+orientation=sim.getJointPosition(joint, -1)
+position=sim.getObjectPosition(hammer,-1)
+-- Here we execute the regular thread code:
+res,err=xpcall(threadFunction,function(err) return debug.traceback(err) end)
+if not res then
+    sim.addStatusbarMessage('Lua runtime error: '..err)
+end
+ 
+-- Put some clean-up code here:
+</pre>
+<p></p>
+<p></p>
+<p><span>joint2手臂關節程式</span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">threadFunction=function()
+    while sim.getSimulationState()~=sim.simulation_advancing_abouttostop do
+        -- Read the keyboard messages (make sure the focus is on the main window, scene view):
+        message,auxiliaryData=sim.getSimulatorMessage()
+        while message~=-1 do
+            if (message==sim.message_keypress) then
+                if (auxiliaryData[1]==115) then
+                    -- w key
+                    if(o &lt; i*8) then
+                    o = o+i
+                    velocity=velocity+0.11
+                    torque=torque+0.1
+                    hammer_back = 0
+                    end
+                end
+                if (auxiliaryData[1]==119) then
+                    -- s key 
+                    if(o &gt; -i*8) then
+                    o = o-i
+                    velocity=velocity-0.11
+                    torque=torque-0.1
+                    hammer_back = 1
+                    end
+                end
+                
+            end
+            message,auxiliaryData=sim.getSimulatorMessage()
+        end
+ 
+        -- We take care of setting the desired hammer position:
+        if hammer_back == 1
+            then 
+               sim.setJointPosition(joint, -1, orientation)
+               --sim.setObjectPosition(hammer,-1, position)
+        end
+        sim.setJointTargetPosition(joint, velocity)
+        --sim.setJointForce(joint,torque)
+
+        -- Since this script is threaded, don't waste time here:
+        sim.switchThread() -- Resume the script at next simulation loop start
+    end
+end
+-- Put some initialization code here:
+-- Retrieving of some handles and setting of some initial values:
+i = 1
+o = i*1
+joint=sim.getObjectHandle('redundantRob_joint2')
+hammer=sim.getObjectHandle('Cylinder1')
+velocity=0
+hammer_back=0
+torque=0
+sliding = 0
+orientation=sim.getJointPosition(joint, -1)
+position=sim.getObjectPosition(hammer,-1)
+-- Here we execute the regular thread code:
+res,err=xpcall(threadFunction,function(err) return debug.traceback(err) end)
+if not res then
+    sim.addStatusbarMessage('Lua runtime error: '..err)
+end
+ 
+-- Put some clean-up code here:
+</pre>
+<p><span></span></p>
+<p><span></span></p>
+<p><span>joint3手臂關節程式</span></p>
+<p><span></span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">threadFunction=function()
+    while sim.getSimulationState()~=sim.simulation_advancing_abouttostop do
+        -- Read the keyboard messages (make sure the focus is on the main window, scene view):
+        message,auxiliaryData=sim.getSimulatorMessage()
+        while message~=-1 do
+            if (message==sim.message_keypress) then
+                if (auxiliaryData[1]==2009) then
+                    -- d key
+                    if(o &lt; i*99) then
+                    o = o+i
+                    velocity=velocity+0.11
+                    torque=torque+0.1
+                    hammer_back = 0
+                    end
+                end
+                if (auxiliaryData[1]==2010) then
+                    -- a key 
+                    if(o &gt; -i*99) then
+                    o = o-i
+                    velocity=velocity-0.11
+                    torque=torque-0.1
+                    hammer_back = 1
+                    end
+                end
+                
+            end
+            message,auxiliaryData=sim.getSimulatorMessage()
+        end
+ 
+        -- We take care of setting the desired hammer position:
+        if hammer_back == 1
+            then 
+               sim.setJointPosition(joint, -1, orientation)
+               --sim.setObjectPosition(hammer,-1, position)
+        end
+        sim.setJointTargetPosition(joint, velocity)
+        --sim.setJointForce(joint,torque)
+
+        -- Since this script is threaded, don't waste time here:
+        sim.switchThread() -- Resume the script at next simulation loop start
+    end
+end
+-- Put some initialization code here:
+-- Retrieving of some handles and setting of some initial values:
+i = 1
+o = i*10
+joint=sim.getObjectHandle('redundantRob_joint3')
+hammer=sim.getObjectHandle('Rectangle2')
+velocity=0
+hammer_back=0
+torque=0
+sliding = 0
+orientation=sim.getJointPosition(joint, -1)
+position=sim.getObjectPosition(hammer,-1)
+-- Here we execute the regular thread code:
+res,err=xpcall(threadFunction,function(err) return debug.traceback(err) end)
+if not res then
+    sim.addStatusbarMessage('Lua runtime error: '..err)
+end
+ 
+-- Put some clean-up code here:
+</pre>
+<p><span></span></p>
+<p><span>joint4手臂關節程式</span></p>
+<p><span></span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">threadFunction=function()
+    while sim.getSimulationState()~=sim.simulation_advancing_abouttostop do
+        -- Read the keyboard messages (make sure the focus is on the main window, scene view):
+        message,auxiliaryData=sim.getSimulatorMessage()
+        while message~=-1 do
+            if (message==sim.message_keypress) then
+                if (auxiliaryData[1]==2007) then
+                    -- d key
+                    if(o &lt; i*99) then
+                    o = o+i
+                    velocity=velocity+0.11
+                    torque=torque+0.1
+                    hammer_back = 0
+                    end
+                end
+                if (auxiliaryData[1]==2008) then
+                    -- a key 
+                    if(o &gt; -i*99) then
+                    o = o-i
+                    velocity=velocity-0.11
+                    torque=torque-0.1
+                    hammer_back = 1
+                    end
+                end
+                
+            end
+            message,auxiliaryData=sim.getSimulatorMessage()
+        end
+ 
+        -- We take care of setting the desired hammer position:
+        if hammer_back == 1
+            then 
+               sim.setJointPosition(joint, -1, orientation)
+               --sim.setObjectPosition(hammer,-1, position)
+        end
+        sim.setJointTargetPosition(joint, velocity)
+        --sim.setJointForce(joint,torque)
+
+        -- Since this script is threaded, don't waste time here:
+        sim.switchThread() -- Resume the script at next simulation loop start
+    end
+end
+-- Put some initialization code here:
+-- Retrieving of some handles and setting of some initial values:
+i = 1
+o = i*10
+joint=sim.getObjectHandle('redundantRob_joint4')
+hammer=sim.getObjectHandle('Cylinder2')
+velocity=0
+hammer_back=0
+torque=0
+sliding = 0
+orientation=sim.getJointPosition(joint, -1)
+position=sim.getObjectPosition(hammer,-1)
+-- Here we execute the regular thread code:
+res,err=xpcall(threadFunction,function(err) return debug.traceback(err) end)
+if not res then
+    sim.addStatusbarMessage('Lua runtime error: '..err)
+end
+ 
+-- Put some clean-up code here:
+</pre>
+<p><span></span></p>
+<p><span>joint5手臂關節程式</span></p>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">threadFunction=function()
+    while sim.getSimulationState()~=sim.simulation_advancing_abouttostop do
+        -- Read the keyboard messages (make sure the focus is on the main window, scene view):
+        message,auxiliaryData=sim.getSimulatorMessage()
+        while message~=-1 do
+            if (message==sim.message_keypress) then
+                if (auxiliaryData[1]==117) then
+                    -- u key
+                    if(o &lt; i*99) then
+                    o = o+i
+                    velocity=velocity+0.11
+                    torque=torque+0.1
+                    hammer_back = 0
+                    end
+                end
+                if (auxiliaryData[1]==105) then
+                    -- i key 
+                    if(o &gt; -i*99) then
+                    o = o-i
+                    velocity=velocity-0.11
+                    torque=torque-0.1
+                    hammer_back = 1
+                    end
+                end
+                
+            end
+            message,auxiliaryData=sim.getSimulatorMessage()
+        end
+ 
+        -- We take care of setting the desired hammer position:
+        if hammer_back == 1
+            then 
+               sim.setJointPosition(joint, -1, orientation)
+               --sim.setObjectPosition(hammer,-1, position)
+        end
+        sim.setJointTargetPosition(joint, velocity)
+        --sim.setJointForce(joint,torque)
+
+        -- Since this script is threaded, don't waste time here:
+        sim.switchThread() -- Resume the script at next simulation loop start
+    end
+end
+-- Put some initialization code here:
+-- Retrieving of some handles and setting of some initial values:
+i = 1
+o = i*10
+joint=sim.getObjectHandle('redundantRob_joint5')
+hammer=sim.getObjectHandle('redundantRob_link5')
+velocity=0
+hammer_back=0
+torque=0
+sliding = 0
+orientation=sim.getJointPosition(joint, -1)
+position=sim.getObjectPosition(hammer,-1)
+-- Here we execute the regular thread code:
+res,err=xpcall(threadFunction,function(err) return debug.traceback(err) end)
+if not res then
+    sim.addStatusbarMessage('Lua runtime error: '..err)
+end
+ 
+-- Put some clean-up code here:
+</pre>
+<p></p>
+<p>joint6手臂關節程式</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">threadFunction=function()
+    while sim.getSimulationState()~=sim.simulation_advancing_abouttostop do
+        -- Read the keyboard messages (make sure the focus is on the main window, scene view):
+        message,auxiliaryData=sim.getSimulatorMessage()
+        while message~=-1 do
+            if (message==sim.message_keypress) then
+                if (auxiliaryData[1]==106) then
+                    -- j key
+                    if(o &lt; i*99) then
+                    o = o+i
+                    velocity=velocity+0.11
+                    torque=torque+0.1
+                    hammer_back = 0
+                    end
+                end
+                if (auxiliaryData[1]==107) then
+                    -- k key 
+                    if(o &gt; -i*99) then
+                    o = o-i
+                    velocity=velocity-0.11
+                    torque=torque-0.1
+                    hammer_back = 1
+                    end
+                end
+                
+            end
+            message,auxiliaryData=sim.getSimulatorMessage()
+        end
+ 
+        -- We take care of setting the desired hammer position:
+        if hammer_back == 1
+            then 
+               sim.setJointPosition(joint, -1, orientation)
+               --sim.setObjectPosition(hammer,-1, position)
+        end
+        sim.setJointTargetPosition(joint, velocity)
+        --sim.setJointForce(joint,torque)
+
+        -- Since this script is threaded, don't waste time here:
+        sim.switchThread() -- Resume the script at next simulation loop start
+    end
+end
+-- Put some initialization code here:
+-- Retrieving of some handles and setting of some initial values:
+i = 1
+o = i*10
+joint=sim.getObjectHandle('redundantRob_joint6')
+hammer=sim.getObjectHandle('redundantRob_joint6')
+velocity=0
+hammer_back=0
+torque=0
+sliding = 0
+orientation=sim.getJointPosition(joint, -1)
+position=sim.getObjectPosition(hammer,-1)
+-- Here we execute the regular thread code:
+res,err=xpcall(threadFunction,function(err) return debug.traceback(err) end)
+if not res then
+    sim.addStatusbarMessage('Lua runtime error: '..err)
+end
+ 
+-- Put some clean-up code here:
+</pre>
+<p>joint7手臂關節程式</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">
+threadFunction=function()
+    while sim.getSimulationState()~=sim.simulation_advancing_abouttostop do
+        -- Read the keyboard messages (make sure the focus is on the main window, scene view):
+        message,auxiliaryData=sim.getSimulatorMessage()
+        while message~=-1 do
+            if (message==sim.message_keypress) then
+                if (auxiliaryData[1]==32) then
+                    -- d key
+                    
+                    velocity=velocity+0.11
+                    torque=torque+0.1
+                    hammer_back = 1
+                    
+                end
+                
+            end
+            message,auxiliaryData=sim.getSimulatorMessage()
+        end
+ 
+        -- We take care of setting the desired hammer position:
+        if hammer_back == 1
+            then 
+               sim.setJointPosition(joint, -1, orientation)
+               --sim.setObjectPosition(hammer,-1, position)
+        end
+        sim.setJointTargetPosition(joint, velocity)
+        --sim.setJointForce(joint,torque)
+
+        -- Since this script is threaded, don't waste time here:
+        sim.switchThread() -- Resume the script at next simulation loop start
+    end
+end
+-- Put some initialization code here:
+-- Retrieving of some handles and setting of some initial values:
+i = 1
+o = i*1
+joint=sim.getObjectHandle('redundantRob_joint7')
+hammer=sim.getObjectHandle('Rectangle4')
+velocity=0
+hammer_back=0
+torque=0
+sliding = 0
+orientation=sim.getJointPosition(joint, -1)
+position=sim.getObjectPosition(hammer,-1)
+-- Here we execute the regular thread code:
+res,err=xpcall(threadFunction,function(err) return debug.traceback(err) end)
+if not res then
+    sim.addStatusbarMessage('Lua runtime error: '..err)
+end
+ 
+-- Put some clean-up code here:
+</pre><h1>stage3</h1>
 <h2>week10</h2>
 <h3>task1</h3>
 <p><span>讀取 stage3_2a.txt, 建立 Stage3 的分組倉儲, 分組網頁, 以及各組員倉儲及網頁連結</span></p>
