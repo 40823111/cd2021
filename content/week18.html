@@ -133,35 +133,60 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">week6 << <a href='week6.html'>Previous</a> <a href='week8.html'>Next</a> >> week8<br /><h1>week7</h1>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/Y33taPcSXP0" title="YouTube video player" width="560"></iframe></p>
-<p>模擬失敗 </p>
-<p> 問題 1. 因為我們是設計螺旋線的上升機構， 所以到輸送平台時把它用直線，導致不符合公差尺寸而跑掉</p>
-<p> 解決1. <span>改善後 把它改成符合螺旋線的入口</span></p>
-<p><img alt="" height="425" src="./../images/44085.jpg" width="239"/>   <img alt="" height="239" src="./../images/messageImage_1618473034644.jpg" width="302"/></p>
-<h4>CoppeliaSim模擬與運送機構創建</h4>
-<p>整體運用重點:</p>
-<ol>
-<li>向本週主軸:CoppeliaSim模擬與運送機構創建</li>
-</ol>
-<p>整體運用重點:</p>
-<ol>
-<li>IK逆運動學</li>
-<li>正向運動學</li>
-<li>送球機構創建</li>
-</ol>
-<p>本週問題:</p>
-<ol>
-<li>多軸手臂的運動預測</li>
-<li>送球機構創建未果</li>
-<li>球受力後的運動路徑預測</li>
-</ol>
-<p>問題改善:</p>
-<ol>
-<li>藉由DH法做運動預期</li>
-<li>加入運動學運算</li>
-</ol>
-<br />week6 << <a href='week6.html'>Previous</a> <a href='week8.html'>Next</a> >> week8</div>
+    <div id="tipue_search_content">心得 << <a href='心得.html'>Previous</a> <br /><h1>week18</h1>
+<p>stage3-ag5 資料統整</p>
+<p></p>
+<p>這物專案我們是以組員<a href="https://40823139.github.io/cd2021/content/index.html">40823139 </a>來改良為主，<span>我們和stage2不同的是把原本複雜的程式縮減成用dummy只要控制 可以大大減少coppliasim 的複雜度</span></p>
+<p><span>場景下載   </span><a href="https://github.com/40823111/cd2021/blob/main/remote%20api/stage3 final.ttt">Stage3-ag1-module.ttt</a> (場景提供 組員40823139)</p>
+<p></p>
+<p>解說</p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/B7HNe7f9VNk" title="YouTube video player" width="560"></iframe></p>
+<p>改良後 最終成品</p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/1kpNmqqGyGI" title="YouTube video player" width="560"></iframe></p>
+<p>這物專案我們是以組員40823139 來改良為主，<span>我們和stage2不同的是把原本複雜的程式縮減成用dummy只要控制 可以大大減少coppliasim 的複雜度</span></p>
+<p></p>
+<p>改良前 (原本有很多複雜的程式)</p>
+<p><img alt="" height="328" src="./../images/old.jpg" width="583"/></p>
+<p></p>
+<p>改良後 (我們把它用dummy取代)</p>
+<p><img alt="" height="320" src="./../images/new.jpg" width="569"/></p>
+<p></p>
+<p>手臂程式</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">-- This is a threaded script, and is just an example!
+
+function sysCall_threadmain()
+
+    jointHandles={-1,-1,-1,-1,-1,-1}
+    for i=1,6,1 do
+        jointHandles[i]=sim.getObjectHandle('UR3_joint'..i)
+    end
+    
+    while sim.getSimulationState()~=sim.simulation_advancing_abouttostop do
+
+
+    -- Set-up some of the RML vectors:
+    vel=10000 --velocity
+    accel=1000--acceleration
+    jerk=0
+    currentVel={0,0,0,0,0,0,0}
+    currentAccel={0,0,0,0,0,0,0}
+    maxVel={vel*math.pi/180,vel*math.pi/180,vel*math.pi/180,vel*math.pi/180,vel*math.pi/180,vel*math.pi/180}
+    maxAccel={accel*math.pi/180,accel*math.pi/180,accel*math.pi/180,accel*math.pi/180,accel*math.pi/180,accel*math.pi/180}
+    maxJerk={jerk*math.pi/180,jerk*math.pi/180,jerk*math.pi/180,jerk*math.pi/180,jerk*math.pi/180,jerk*math.pi/180}
+    targetVel={0,0,0,0,0,0}
+
+    targetPos1={150*math.pi/180,108*math.pi/180,-90*math.pi/180,90*math.pi/180,90*math.pi/180,90*math.pi/180}
+    sim.rmlMoveToJointPositions(jointHandles,-1,currentVel,currentAccel,maxVel,maxAccel,maxJerk,targetPos1,targetVel)
+
+    targetPos2={-90*math.pi/180,99*math.pi/180,-30*math.pi/360,-150*math.pi/180,-60*math.pi/180,90*math.pi/180}
+    sim.rmlMoveToJointPositions(jointHandles,-1,currentVel,currentAccel,maxVel,maxAccel,maxJerk,targetPos2,targetVel)
+    
+    targetPos3={0,0,0,0,0,0}
+    sim.rmlMoveToJointPositions(jointHandles,-1,currentVel,currentAccel,maxVel,maxAccel,maxJerk,targetPos3,targetVel)
+    end
+
+end
+</pre><br />心得 << <a href='心得.html'>Previous</a> </div>
         
     <!-- footer -->
       <div class="container">
